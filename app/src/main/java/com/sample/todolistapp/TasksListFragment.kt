@@ -56,6 +56,7 @@ class TasksListFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 tasksListViewModel.tasks.collect { tasks ->
                     binding.taskRecyclerView.adapter = TasksListAdapter(tasks)
+
                 }
             }
         }

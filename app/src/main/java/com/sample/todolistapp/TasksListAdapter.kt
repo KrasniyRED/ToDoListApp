@@ -13,6 +13,16 @@ class TaskHolder(
 
         binding.priorityView.text = task.priority.toString()
 
+        if(task.priority == 1){
+            binding.priorityView.setBackgroundResource(R.color.High_priority_color)
+        }
+        if(task.priority == 2){
+            binding.priorityView.setBackgroundResource(R.color.Medium_priority_color)
+        }
+        if(task.priority == 3){
+            binding.priorityView.setBackgroundResource(R.color.Low_priority_color)
+        }
+
     }
 
 }

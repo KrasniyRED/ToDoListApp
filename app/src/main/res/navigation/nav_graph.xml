@@ -17,5 +17,9 @@
         android:id="@+id/addTaskFragment"
         android:name="com.sample.todolistapp.AddTaskFragment"
         android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/backPath"
+            app:destination="@id/tasksListFragment" />
+    </fragment>
 </navigation>
