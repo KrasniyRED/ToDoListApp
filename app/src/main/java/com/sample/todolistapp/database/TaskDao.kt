@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.sample.todolistapp.Task
 import kotlinx.coroutines.flow.Flow
+import java.util.UUID
 
 @Dao
 interface TaskDao {
@@ -12,6 +13,8 @@ interface TaskDao {
     fun getTasks(): Flow<List<Task>>
     @Insert
     suspend fun addTask(crime: Task)
+    @Query("DELETE FROM task WHERE id = :id")
+    suspend fun deletetask(id: UUID)
 
 
 }

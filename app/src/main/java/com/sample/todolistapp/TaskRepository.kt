@@ -6,6 +6,7 @@ import com.sample.todolistapp.database.TaskDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import java.util.UUID
 
 private const val DATABASE_NAME = "task-database"
 
@@ -24,6 +25,9 @@ class TaskRepository private constructor(
     fun getTasks(): Flow<List<Task>> = database.taskDao().getTasks()
     suspend fun addTask(task: Task) {
         database.taskDao().addTask(task)
+    }
+    suspend fun deletetask(id: UUID) {
+        database.taskDao().deletetask(id)
     }
 
 

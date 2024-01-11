@@ -11,7 +11,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sample.todolistapp.databinding.FragmentTasksListBinding
 import kotlinx.coroutines.launch
 
@@ -45,6 +47,31 @@ class TasksListFragment : Fragment() {
                 TasksListFragmentDirections.addTask()
             )
         }
+
+                ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                    override fun onMove(
+                        recyclerView: RecyclerView,
+                        viewHolder: RecyclerView.ViewHolder,
+                        target: RecyclerView.ViewHolder
+                    ): Boolean {
+                        // this method is called
+                        // when the item is moved.
+                        return false
+                    }
+
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                        // this method is called when item is swiped.
+                        // below line is to remove item from our array list.
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            tasksListViewModel.deletetask(viewHolder.bindingAdapterPosition)
+                        }
+                    }
+                    // at last we are adding this
+                    // to our recycler view.
+                }).attachToRecyclerView(binding.taskRecyclerView)
+
+
+
 
 
         return binding.root

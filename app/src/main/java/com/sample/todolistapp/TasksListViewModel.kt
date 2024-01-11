@@ -16,6 +16,10 @@ class TasksListViewModel : ViewModel() {
     val tasks: StateFlow<List<Task>>
         get() = _tasks.asStateFlow()
 
+    suspend fun deletetask(position: Int) {
+        taskRepository.deletetask(tasks.value[position].id)
+    }
+
     init {
         viewModelScope.launch {
             taskRepository.getTasks().collect {

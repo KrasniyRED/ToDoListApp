@@ -22,7 +22,6 @@ class TaskHolder(
         if(task.priority == 3){
             binding.priorityView.setBackgroundResource(R.drawable.low_priority_bg)
         }
-
     }
 
 }
@@ -41,6 +40,8 @@ class TasksListAdapter(
     override fun onBindViewHolder(holder: TaskHolder, position: Int) {
         val task = tasks[position]
         holder.bind(task)
+
     }
     override fun getItemCount() = tasks.size
+
 }
